@@ -1,0 +1,32 @@
+{% extends 'layout2.html' %}
+{% load static %}
+
+{% block title %}
+    Add Book
+{% endblock %}
+
+{% block navbar %}
+{% endblock %}
+
+{% block contant %}
+<div class="parent">
+    <div class="form text-center">
+        <h1 class="mb-4">Add Book</h1>
+        <form method="post">
+            {% csrf_token %}
+            <input type="text" class="in mb-4" name="title" placeholder="Title" required>
+            <input type="text" class="in mb-4" name="author" placeholder="Author" required>
+            <input type="number" class="in mb-4" step="0.01" name="price" placeholder="Price" required>
+            
+            <a href="{% url 'open' lib_id %}" class="btn btn-outline-danger mt-4 mx-2">Cancel</a>
+            <button class="btn btn-outline-success mt-4 mx-2" type="submit">Add Book</button>
+            
+            {% if error %}
+            <p style="color:red">{{error}}</p>
+            {% endif %}
+            
+        </form>
+        
+    </div>
+</div>
+    {% endblock %}

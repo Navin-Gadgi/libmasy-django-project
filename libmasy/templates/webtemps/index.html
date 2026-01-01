@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Typing Effect</title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+        <style>
+            body {
+                background-color: #0c1020;
+                color: #f0f0f0;
+            }
+
+            .container2 {
+                align-items: center;
+                justify-content: center;
+                text-align: center;
+                margin-top: 7rem;
+                padding: 1rem;
+            }
+
+            h1 {
+                font-size: 4rem;
+                font-weight: 500;
+                /* color: #fff; */
+                margin-bottom: 0.5rem;
+            }
+
+            .nav-item {
+                font-size: 18px;
+            }
+
+            .subtitle {
+                font-size: 2.5rem;
+                font-weight: 300;
+                color: #ccc;
+                margin-bottom: 2rem;
+            }
+
+            #typing-effect {
+                color: #fff;
+                font-weight: 500;
+            }
+
+            #typing-effect::after {
+                content: '|';
+                display: inline-block;
+                color: #fff;
+                font-weight: 200;
+                animation: blink 0.7s infinite;
+            }
+
+            @keyframes blink {
+
+                0%,
+                100% {
+                    opacity: 1;
+                }
+
+                50% {
+                    opacity: 0;
+                }
+            }
+
+            @media (max-width: 768px) {
+                h1 {
+                    font-size: 3rem;
+                }
+
+                .subtitle {
+                    font-size: 1.5rem;
+                }
+            }
+        </style>
+    </head>
+
+    <body>
+        <nav class="navbar navbar-expand-lg">
+            <div class="container my-3">
+                <a class="navbar-brand" href="/"><img src="../../static/images/back3.PNG" alt="logo" height="40"
+                        width="100"></a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav me-auto mb-lg-0 mb-2 mx-auto">
+                        <li class="nav-item mx-4">
+                            <a class="nav-link active ms-5" aria-current="page" href="/">Home</a>
+                        </li>
+                        <li class="nav-item mx-4">
+                            <a class="nav-link ms-5" href="about\">about</a>
+                        </li>
+                        <li class="nav-item mx-4">
+                            <a class="nav-link ms-5" href="contact\">contact</a>
+                        </li>
+                    </ul>
+                    <form class="d-flex" role="search" action="/newapp">
+                        <input class="form-control me-2" type="search" placeholder="Search..." aria-label="Search" />
+                        <button class="btn btn-outline-secondary" type="submit">Search</button>
+                    </form>
+                </div>
+            </div>
+        </nav>
+
+        <main class="container2">
+
+            <h1>Welcome to The LibMaSy 🤖</h1>
+
+            <p class="subtitle">
+                You can
+                <span id="typing-effect"></span>
+            </p>
+
+            <button type="button" class="btn btn-outline-secondary btn-lg">Let's Start</button>
+
+            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+
+            <script>
+                const typingElement = document.getElementById('typing-effect');
+
+                const words = [
+                    "Create",
+                    "Read",
+                    "Update",
+                    "Delete",
+                ];
+
+                let wordIndex = 0;     
+                let charIndex = 0;     
+                let isDeleting = false; 
+
+                const typingSpeed = 50;
+                const deletingSpeed = 50;
+                const newWordDelay = 1200; 
+
+                function typeDeleteLoop() {
+                    const currentWord = words[wordIndex];
+
+                    if (isDeleting) {
+                        
+                        typingElement.textContent = currentWord.substring(0, charIndex - 1);
+                        charIndex--;
+
+                        if (charIndex === 0) {
+                            isDeleting = false;
+                            wordIndex++; 
+                            if (wordIndex === words.length) {
+                                wordIndex = 0;
+                            }
+                            setTimeout(typeDeleteLoop, newWordDelay);
+                        } else {
+                            setTimeout(typeDeleteLoop, deletingSpeed);
+                        }
+
+                    } else {
+                       
+                        typingElement.textContent = currentWord.substring(0, charIndex + 1);
+                        charIndex++;
+
+                        if (charIndex === currentWord.length) {
+                            isDeleting = true;
+                            setTimeout(typeDeleteLoop, newWordDelay);
+                        } else {
+                            setTimeout(typeDeleteLoop, typingSpeed);
+                        }
+                    }
+                }
+
+                document.addEventListener('DOMContentLoaded', (event) => {
+                    setTimeout(typeDeleteLoop, newWordDelay);
+                });
+            </script>
+
+    </body>
+
+</html>

@@ -1,0 +1,21 @@
+{% extends "layout2.html" %}
+{% load static %}
+
+{% block title %}
+Temp
+{% endblock %}
+
+{% block navbar %}{% endblock %}
+
+{% block contant %}
+<div class="parent">
+  <div class="form2 text-center">
+    <h1>Are you sure that you want to delete the library?</h1>
+    <form method="post">
+      {% csrf_token %}
+      <a href="{% url 'library' %}" class="btn btn-outline-primary mx-3 mt-4">Cancel</a>
+      <button class="btn btn-outline-danger mx-3 mt-4">Delete</button>
+    </form>
+  </div>
+</div>
+{% endblock %}

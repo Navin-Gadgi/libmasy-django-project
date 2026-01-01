@@ -1,0 +1,152 @@
+{% extends "layout2.html" %}
+{% load static %}
+
+{% block title %}
+Open
+{% endblock %}
+
+{% block navbar %}
+<nav class="navbar navbar-expand-lg" data-bs-theme="dark" id="nav">
+    <div class="container my-3">
+
+        <a class="navbar-brand" href="{% url 'home' %}">
+            <img src="{% static 'images/back3.PNG' %}" class="logo" alt="logo" height="40" width="100">
+        </a>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mb-lg-0 mb-2 mx-auto">
+                <li class="nav-item mx-4">
+
+                    <a class="nav-link ms-5" aria-current="page" href="{% url 'home' %}">
+                        Home
+                    </a>
+                </li>
+                <li class="nav-item mx-4">
+                    <a class="nav-link ms-5" href="{% url 'about' %}">About</a>
+                </li>
+                <li class="nav-item mx-4">
+                    <a class="nav-link ms-5" href="{% url 'contact' %}">Contact</a>
+                </li>
+                {% if user.is_authenticated %}
+                <li class="nav-item mx-4">
+                    <a class="nav-link ms-5 active" href="{% url 'library' %}">Library</a>
+                </li>
+                {% else %}
+                <li class="nav-item mx-4">
+                    <a class="nav-link ms-5 active" href="{% url 'login' %}">Library</a>
+                </li>
+                {% endif %}
+            </ul>
+            <a href="{% url 'rename_library' lib_id %}" class="btn btn-outline-primary mx-2">Rename Library</a>
+            {% if user.is_authenticated %}
+            <form method="post" class="mx-2" action="{% url 'logged_out' %}">
+                {% csrf_token %}
+                <button class="btn btn-outline-danger">Logout</button>
+            </form>
+            {% else %}
+            <form method="post" class="mx-2" action="{% url 'register' %}">
+                {% csrf_token %}
+                <button class="btn btn-outline-primary">Register</button>
+            </form>
+
+            <form method="post" class="mx-2" action="{% url 'login' %}">
+                {% csrf_token %}
+                <button class="btn btn-outline-success">Login</button>
+            </form>
+            {% endif %}
+            <div class="kebab-container">
+                <input type="checkbox" id="kebab-toggle">
+                <label for="kebab-toggle" class="kebab-btn" aria-label="More options">⋮</label>
+
+                <ul class="kebab-menu">
+                    <li><a href="{% url 'library' %}" class="btn">Share</a></li>
+                    <li>Rename</li>
+                    <li>Archive</li>
+                    <li class="danger">Delete</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</nav>
+{% endblock %}
+
+{% block contant %}
+
+<div class="table-responsive container text-center mt-4 tab">
+    <h2>List of Available Books</h2>
+    <div class="atag2">
+    <a href="{% url 'library' %}" class="mt-3 btn btn-outline-light">
+        <span class=""><img class="arrow" src="{% static 'images/left.png' %}" alt="arrow"></span><span>Back</span>
+    </a>
+    </div>
+    <div class="addbookbut text-center ms-auto">
+        <form action="{% url 'add_book' lib_id %}">
+            <button class="button" type="sub mit">
+                <span class="button__text">Add Book</span>
+                <span class="button__icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke-width="2"
+                        stroke-linejoin="round" stroke-linecap="round" stroke="currentColor" height="24" fill="none"
+                        class="svg">
+                        <line y2="19" y1="5" x2="12" x1="12"></line>
+                        <line y2="12" y1="12" x2="19" x1="5"></line>
+                    </svg></span>
+            </button>
+        </form>
+    </div>
+    {% if not books %}
+    <h3 class="mt-5">No Book Added Yet</h3>
+    {% else %}
+    <table class="table table-striped table-dark mt-5">
+        <thead>
+            <tr>
+                <th class="col1" scope="col">No.</th>
+                <th class="col2" scope="col">Title</th>
+                <th class="col3" scope="col">Author</th>
+                <th class="col1" scope="col">Price</th>
+                <th class="col3" scope="col">Date</th>
+                <th class="col6" scope="col">Action</th>
+            </tr>
+        </thead>
+        <tbody class="table-group-divider">
+            {% for book in books %}
+            <tr>
+                <td>{{forloop.counter}}</td>
+                <td>{{book.title}}</td>
+                <td>{{book.author}}</td>
+                <td>{{book.price}}</td>
+                <td>{{book.created_at}}</td>
+                <td>
+                    {% if book.available %}
+                    <a href="{% url 'issue_book' book.id lib_id %}" class="btn btn-sm btn-outline-light mx-1">Issue
+                        Book</a>
+                    <a href="{% url 'update' book.id lib_id %}" class="btn btn-sm btn-outline-light mx-1">Update</a>
+                    <a href="{% url 'remove' book.id lib_id %}" class="btn btn-sm btn-outline-danger mx-1">Remove</a>
+                    {% else %}
+                    <span class="badge text-bg-light">Issued</span>
+                    <a href="{% url 'remove' book.id lib_id %}" class="btn btn-sm btn-outline-danger mx-1">Remove</a>
+                    {% endif %}
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% endif %}
+    <a href="{% url 'issued_books' lib_id %}" class="btn btn-outline-light mt-3">Issued Books</a>
+</div>
+
+<script>
+  document.addEventListener("click", function (event) {
+    document.querySelectorAll(".kebab-container").forEach(container => {
+      const button = container.querySelector(".kebab-btn");
+      const menu = container.querySelector(".kebab-menu");
+
+      if (button.contains(event.target)) {
+        // Toggle menu
+        menu.classList.toggle("show");
+      } else if (!container.contains(event.target)) {
+        // Click outside → close
+        menu.classList.remove("show");
+      }
+    });
+  });
+</script>
+
+{% endblock %}

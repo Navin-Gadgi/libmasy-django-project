@@ -1,0 +1,27 @@
+{% extends "layout2.html" %}
+{% load static %}
+
+{% block title %}
+    Library
+{% endblock %}
+
+{% block contant %}
+    <div class="container row lib-div gap-3 my=auto pb-5 pt-5">
+        
+            {% for l in lib %}
+                <div class="lib2">
+                    <div>
+                        <h4 class="pb-2">{{ l.library_name }}</h4>
+                        <a href="{% url 'lib_del' l.id %}" class="btn btn-outline-danger">Delete</a>
+                        <a href="{% url 'open' l.id%}" class="btn btn-outline-primary mx-1 wid">View</a>
+                    </div>
+                </div>       
+            {% empty %}
+                <h4>No library has been created yet!</h4>
+            {% endfor %}
+        
+    </div>
+    <div class="text-center">
+        <a href="{% url 'lib_create' %}" class="homebut btn my-4" type="submit">Create Library</a>
+    </div>
+{% endblock %}

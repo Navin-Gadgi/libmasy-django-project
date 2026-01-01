@@ -1,0 +1,31 @@
+{% extends "layout.html" %}
+
+{% block title %}
+Register
+{% endblock %}
+
+{% block navbar %}
+
+{% endblock %}
+
+{% block contant %}
+<div class="parent">
+
+    <div class="form2">
+        <h1 class="mb-5 text-center">Register</h1>
+        <form method="post">
+            {% csrf_token %}
+            {{form.as_p}}
+            <div class="text-center">
+                <h4 class="mt-4">Already Have account? <a href="{% url 'login' %}">Login</a></h4>
+                {% if user.is_authenticated %}
+                <a href="{% url 'library' %}" class="btn btn-outline-primary mt-3">Cancel</a>
+                {% else %}
+                <a href="{% url 'home' %}" class="btn btn-outline-primary mt-3">Cancel</a>
+                {% endif %}
+                <button class="btn btn-outline-success mt-3 mx-4">Register</button>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}
