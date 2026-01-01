@@ -15,6 +15,7 @@
     <form method="post">
       {% csrf_token %}
       <input type="text" class="in mb-4" name="issuer_name" placeholder="Issuer Name" required>
+      <input type="number" value="1" class="in mb-4" name="copies" placeholder="Number of Copies" required>
       <a href="{% url 'open' lib_id %}" class="btn btn-outline-danger mt-4 mx-2">Cancel</a>
       <button class="btn btn-outline-success mt-4 mx-2" type="submit">Issue Book</button>
     </form>

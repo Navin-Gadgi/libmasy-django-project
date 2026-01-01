@@ -17,6 +17,7 @@
             <input type="text" class="in mb-4" name="title" placeholder="Title" required>
             <input type="text" class="in mb-4" name="author" placeholder="Author" required>
             <input type="number" class="in mb-4" step="0.01" name="price" placeholder="Price" required>
+            <input type="number" class="in mb-4" name="copies" value="1" placeholder="Number of Copies" required>
             
             <a href="{% url 'open' lib_id %}" class="btn btn-outline-danger mt-4 mx-2">Cancel</a>
             <button class="btn btn-outline-success mt-4 mx-2" type="submit">Add Book</button>

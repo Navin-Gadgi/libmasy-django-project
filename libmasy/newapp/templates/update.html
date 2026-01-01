@@ -17,6 +17,7 @@
             <input type="text" value="{{ book_ins.title }}" class="in mb-4" name="title" placeholder="New Title" required>
             <input type="text" value="{{ book_ins.author }}" class="in mb-4" name="author" placeholder="New Author" required>
             <input type="number" value="{{ book_ins.price }}" class="in mb-4" step="0.01" name="price" placeholder="New Price" required>
+            <input type="number" class="in mb-4" value="{{ book_ins.copies }}" name="copies" placeholder="Copies" required>
             
             <a href="{% url 'open' lib_id %}" class="btn btn-outline-danger mt-4 mx-2">Cancel</a>
             <button class="btn btn-outline-success mt-4 mx-2" type="submit">Update</button>

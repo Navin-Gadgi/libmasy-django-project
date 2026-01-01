@@ -88,12 +88,14 @@ def update(request, book_id, lib_id):
     if request.method == 'POST':
         title = request.POST.get("title")
         author = request.POST.get("author")
+        copies = request.POST.get("copies")
         price = request.POST.get("price")
 
         library_obj = Library.objects.get(id=lib_id)
         Book.objects.filter(id=book_id).update(
             title=title,
             author=author,
+            copies = copies,
             price=price,
             library=library_obj
         )
@@ -112,6 +114,7 @@ def add_book(request, lib_id):
     if request.method == "POST":
         title = request.POST.get("title")
         author = request.POST.get("author")
+        copies = request.POST.get("copies")
         price = request.POST.get("price")
 
         library_obj = Library.objects.get(id=lib_id)
@@ -119,6 +122,7 @@ def add_book(request, lib_id):
         Book.objects.create(
             title=title,
             author=author,
+            copies = copies,
             price=price,
             library=library_obj
         )
@@ -129,20 +133,35 @@ def add_book(request, lib_id):
 @login_required
 def issue_book(request, book_id, lib_id):
     book_obj = get_object_or_404(Book, id=book_id)
+    cur_copies = book_obj.copies
     lib_obj = get_object_or_404(Library, pk=lib_id)
     
     if request.method == "POST":
         issuer_name = request.POST.get("issuer_name")
+        copy = int(request.POST.get('copies'))
+
+        if (cur_copies - copy) < 0:
+            return HttpResponse("That much copies are not available!")
+        
+        if (cur_copies - copy) == 0:
+            Book.objects.filter(id=book_obj.id).update(
+                available = False
+            )
+
+        if copy < 1:
+            return HttpResponse("Copies cant be 0 or negative!")
+        
+        Book.objects.filter(id=book_obj.id).update(
+            copies = cur_copies - copy
+        )
 
         IssuedBook.objects.create(
             library = lib_obj,
             book = book_obj,
-            issuer = issuer_name
+            issuer = issuer_name,
+            copies = copy
         )
 
-        Book.objects.filter(id=book_obj.id).update(
-        available = False
-        )
 
         return redirect('open', lib_id)
     return render(request, "issue_book.html", {"lib_id": lib_id})
@@ -157,8 +176,11 @@ def remove(request, book_id, lib_id):
 @login_required
 def return_book(request, book_id, lib_id):
     issue_book_obj = get_object_or_404(IssuedBook, pk=book_id)
+    i_copies = issue_book_obj.copies
     book_obj = get_object_or_404(Book.objects.filter(id=issue_book_obj.book.id))
+    b_copies = book_obj.copies
     Book.objects.filter(id=book_obj.id).update(
+        copies =  + b_copies + i_copies,
         available = True
     )
     IssuedBook.objects.filter(id=book_id).delete()

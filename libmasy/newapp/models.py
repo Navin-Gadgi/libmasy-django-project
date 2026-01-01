@@ -16,8 +16,9 @@ class Book(models.Model):
     library = models.ForeignKey(Library, on_delete=models.CASCADE)
     title = models.CharField(max_length=50)
     author = models.CharField(max_length=20)
+    copies = models.PositiveIntegerField(null=True, blank=True)
     available = models.BooleanField(default=True)
-    price = models.IntegerField()
+    price = models.PositiveIntegerField()
     created_at = models.DateField(auto_now_add=True)
 
     def __str__(self):
@@ -27,6 +28,7 @@ class IssuedBook(models.Model):
     library = models.ForeignKey(Library, on_delete=models.CASCADE)
     book = models.ForeignKey(Book,on_delete=models.CASCADE)
     issuer = models.CharField(max_length=20)
+    copies = models.PositiveIntegerField(null=True, blank=True)
     issue_date = models.DateField(auto_now_add=True)
     return_date = models.DateField(null=True, blank=True)
     is_returned = models.BooleanField(default=False)

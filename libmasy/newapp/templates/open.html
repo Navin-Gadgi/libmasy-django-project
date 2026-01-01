@@ -98,25 +98,35 @@ Open
         <thead>
             <tr>
                 <th class="col1" scope="col">No.</th>
+                <th class="col8" scope="col">ID</th>
                 <th class="col2" scope="col">Title</th>
                 <th class="col3" scope="col">Author</th>
-                <th class="col1" scope="col">Price</th>
-                <th class="col3" scope="col">Date</th>
-                <th class="col6" scope="col">Action</th>
+                <th class="col4" scope="col">Price</th>
+                <th class="col5" scope="col">Date</th>
+                <th class="col6" scope="col">Copies</th>
+                <th class="col7" scope="col">Action</th>
             </tr>
         </thead>
         <tbody class="table-group-divider">
             {% for book in books %}
             <tr>
-                <td>{{forloop.counter}}</td>
+                <th>{{forloop.counter}}</th>
+                <td>{{book.id}}</td>
                 <td>{{book.title}}</td>
                 <td>{{book.author}}</td>
                 <td>{{book.price}}</td>
                 <td>{{book.created_at}}</td>
+                {% if book.copies > 0 %}
+                <td>{{book.copies}}</td>
+                {% else %}
+                <td><span class="badge text-bg-light">No Stock</span></td>
+                {% endif %}
                 <td>
                     {% if book.available %}
+                    {% if book.copies > 0 %}
                     <a href="{% url 'issue_book' book.id lib_id %}" class="btn btn-sm btn-outline-light mx-1">Issue
                         Book</a>
+                    {% endif %}
                     <a href="{% url 'update' book.id lib_id %}" class="btn btn-sm btn-outline-light mx-1">Update</a>
                     <a href="{% url 'remove' book.id lib_id %}" class="btn btn-sm btn-outline-danger mx-1">Remove</a>
                     {% else %}

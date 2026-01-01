@@ -1,1 +1,0 @@
-# libmasy-django-project
