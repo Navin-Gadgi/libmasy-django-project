@@ -12,7 +12,7 @@ Register
 <div class="parent">
 
     <div class="form2">
-        <h1 class="mb-5 text-center">Register</h1>
+        <h1 class="mb-5 text-center">Sign Up</h1>
         <form method="post">
             {% csrf_token %}
             {{form.as_p}}
@@ -23,7 +23,7 @@ Register
                 {% else %}
                 <a href="{% url 'home' %}" class="btn btn-outline-primary mt-3">Cancel</a>
                 {% endif %}
-                <button class="btn btn-outline-success mt-3 mx-4">Register</button>
+                <button class="btn btn-outline-success mt-3 mx-4">Sign Up</button>
             </div>
         </form>
     </div>

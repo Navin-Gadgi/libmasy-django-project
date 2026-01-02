@@ -71,7 +71,9 @@
                 {% if user.is_authenticated %}
                 <form method="post" class="mx-2" action="{% url 'logged_out' %}">
                     {% csrf_token %}
-                    <button class="btn btn-outline-danger">Logout</button>
+                    <button class="btn btn-outline-danger">Logout
+                        <img src="{% static 'images/logout.png' %}" width="50" height="20" alt="logout">
+                    </button>
                 </form>
                 {% else %}
                 <form method="post" class="mx-2" action="{% url 'register' %}">

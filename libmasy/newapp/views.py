@@ -176,12 +176,29 @@ def remove(request, book_id, lib_id):
 @login_required
 def return_book(request, book_id, lib_id):
     issue_book_obj = get_object_or_404(IssuedBook, pk=book_id)
-    i_copies = issue_book_obj.copies
-    book_obj = get_object_or_404(Book.objects.filter(id=issue_book_obj.book.id))
-    b_copies = book_obj.copies
-    Book.objects.filter(id=book_obj.id).update(
-        copies =  + b_copies + i_copies,
-        available = True
-    )
-    IssuedBook.objects.filter(id=book_id).delete()
-    return redirect('issued_books', lib_id)
+
+    if request.method == 'POST':
+        i_copies = int(request.POST.get('copies'))
+
+        if i_copies <= issue_book_obj.copies:
+            book_obj = get_object_or_404(Book.objects.filter(id=issue_book_obj.book.id))
+            print(issue_book_obj.book)
+            b_copies = book_obj.copies
+
+            Book.objects.filter(id=book_obj.id).update(
+                copies =  + b_copies + i_copies,
+                available = True
+            )
+
+            IssuedBook.objects.filter(id=book_id).update(
+                copies = issue_book_obj.copies - i_copies
+            )
+
+            if issue_book_obj.copies - i_copies == 0:
+                IssuedBook.objects.filter(id=issue_book_obj.id).delete()
+        else:
+            print(issue_book_obj.copies)
+            return HttpResponse("Returning more books than issued")
+
+        return redirect('issued_books', lib_id)
+    return render(request, 'return.html', {'lib_id': lib_id})

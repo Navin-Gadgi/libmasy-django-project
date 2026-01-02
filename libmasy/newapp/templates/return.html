@@ -1,0 +1,23 @@
+{% extends "layout2.html" %}
+{% load static %}
+
+{% block title %}
+ Return Book
+{% endblock %}
+
+{% block navbar %}
+{% endblock %}
+
+{% block contant %}
+<div class="parent">
+  <div class="form text-center gap-5">
+    <h1 class="mb-5">Return Book</h1>
+    <form method="post">
+      {% csrf_token %}
+      <input type="number" value="1" class="in mb-4" name="copies" placeholder="Number of Copies" required>
+      <a href="{% url 'issued_books' lib_id %}" class="btn btn-outline-danger mt-4 mx-2">Cancel</a>
+      <button class="btn btn-outline-success mt-4 mx-2" type="submit">Return Book</button>
+    </form>
+  </div>
+</div>
+{% endblock %}

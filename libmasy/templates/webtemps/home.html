@@ -1,4 +1,5 @@
 {% extends "layout.html" %}
+{% load static %}
 
 {% block title %}
 Home
@@ -33,12 +34,29 @@ Home
             {% if user.is_authenticated %}
             <form method="post" class="mx-2" action="{% url 'logged_out' %}">
                 {% csrf_token %}
-                <button class="btn btn-outline-danger">Logout</button>
+                    <button class="btn btn-outline-danger">Logout
+                        <svg 
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="24" 
+                            height="24" 
+                            viewBox="0 0 24 24" 
+                            fill="none" 
+                            stroke="currentColor" 
+                            stroke-width="2" 
+                            stroke-linecap="round" 
+                            stroke-linejoin="round" 
+                            class="icon icon-tabler icons-tabler-outline icon-tabler-logout">
+                            <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                            <path d="M14 8v-2a2 2 0 0 0 -2 -2h-7a2 2 0 0 0 -2 2v12a2 2 0 0 0 2 2h7a2 2 0 0 0 2 -2v-2" />
+                            <path d="M9 12h12l-3 -3" />
+                            <path d="M18 15l3 -3" /></svg>
+                    </button>
+                </button>
             </form>
             {% else %}
             <form method="post" class="mx-2" action="{% url 'register' %}">
                 {% csrf_token %}
-                <button class="btn btn-outline-primary">Register</button>
+                <button class="btn btn-outline-primary">Sign Up</button>
             </form>
             <form method="post" class="mx-2" action="{% url 'login' %}">
                 {% csrf_token %}
