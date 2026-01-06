@@ -15,6 +15,7 @@
     <form method="post">
       {% csrf_token %}
       <input type="text" class="in mb-4" name="library_name" placeholder="Enter Library Name" required>
+      <input type="text" class="in mb-4" name="lib_address" placeholder="Enter Library Address or Branch">
       <a href="{% url 'library' %}" class="btn btn-outline-danger mt-4 mx-2">Cancel</a>
       <button class="btn btn-outline-success mt-4 mx-2" type="submit">Create</button>
     </form>

@@ -2,26 +2,35 @@
 {% load static %}
 
 {% block title %}
-    Library
+Library
 {% endblock %}
 
 {% block contant %}
-    <div class="container row lib-div gap-3 my=auto pb-5 pt-5">
-        
-            {% for l in lib %}
-                <div class="lib2">
-                    <div>
-                        <h4 class="pb-2">{{ l.library_name }}</h4>
+<div class="container row lib-div gap-4 my=auto pb-5 pt-5">
+
+    {% for l in lib %}
+            <!-- <div class="lib2"> -->
+                <div class="lib2 d-flex flex-column position-relative">
+                    <a href="{% url 'rename_library' l.id %}"> <img class="end-0 top-0 position-absolute" src="{% static 'images/edit.png' %}" alt="edit icon" height="15px" width="15px"></a>
+                    <h3>{{ l.library_name }}</h3>
+                    {% if l.lib_address %}
+                    <h6 class="pb-2">{{ l.lib_address }}</h6>
+                    {% else %}
+                    <h6 class="pb-2">No Address or Branch</h6>
+                    {% endif %}
+                    <div class="mt-auto">
+
                         <a href="{% url 'lib_del' l.id %}" class="btn btn-outline-danger">Delete</a>
                         <a href="{% url 'open' l.id%}" class="btn btn-outline-primary mx-1 wid">View</a>
-                    </div>
-                </div>       
-            {% empty %}
-                <h4>No library has been created yet!</h4>
-            {% endfor %}
-        
-    </div>
-    <div class="text-center">
-        <a href="{% url 'lib_create' %}" class="homebut btn my-4" type="submit">Create Library</a>
-    </div>
+                    </div> 
+                </div>
+            <!-- </div>        -->
+    {% empty %}
+    <h4>No library has been created yet!</h4>
+    {% endfor %}
+
+</div>
+<div class="text-center">
+    <a href="{% url 'lib_create' %}" class="homebut btn my-4" type="submit">Create Library</a>
+</div>
 {% endblock %}

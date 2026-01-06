@@ -23,10 +23,12 @@ def library(request):
 def lib_create(request):
     if request.method == "POST":
         name = request.POST.get("library_name")
+        address = request.POST.get("lib_address")
 
         Library.objects.create(
             user = request.user,
-            library_name = name
+            library_name = name,
+            lib_address = address
         )
         return redirect('library')
     return render(request, 'lib_create.html')
@@ -36,14 +38,17 @@ def rename_library(request, lib_id):
     lib = get_object_or_404(Library, pk=lib_id, user = request.user)
     if request.method == 'POST':
         name = request.POST.get("library_name")
+        address = request.POST.get("lib_address")
 
         Library.objects.filter(id=lib_id).update(
-            library_name = name
+            library_name = name,
+            lib_address = address
         )
 
-        return redirect('open', lib_id)
+        return redirect('library')
     old_name = lib.library_name
-    return render(request, 'rename_library.html', {'lib_id':lib_id, 'old_name':old_name})
+    old_address = lib.lib_address
+    return render(request, 'rename_library.html', {'lib_id':lib_id, 'old_name':old_name, 'old_address': old_address})
         
 @login_required
 def lib_del(request, lib_id):

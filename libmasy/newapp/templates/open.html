@@ -36,7 +36,7 @@ Open
                 </li>
                 {% endif %}
             </ul>
-            <a href="{% url 'rename_library' lib_id %}" class="btn btn-outline-primary mx-2">Rename Library</a>
+            <a href="{% url 'rename_library' lib_id %}" class="btn btn-outline-primary mx-2">Update Library</a>
             {% if user.is_authenticated %}
             <form method="post" class="mx-2" action="{% url 'logged_out' %}">
                 {% csrf_token %}

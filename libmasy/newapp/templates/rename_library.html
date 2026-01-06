@@ -3,7 +3,7 @@
 {% load static %}
 
 {% block title %}
-  Rename Library
+  Update Library
 {% endblock %}
 
 {% block navbar %}
@@ -12,12 +12,13 @@
 {% block contant %}
 <div class="parent">
   <div class="form text-center gap-5">
-    <h1 class="mb-5">Rename Library</h1>
+    <h1 class="mb-5">Update Library</h1>
     <form method="post">
       {% csrf_token %}
       <input type="text" class="in mb-4" name="library_name" value="{{ old_name }}" placeholder="Enter New Library Name" required>
-      <a href="{% url 'open' lib_id %}" class="btn btn-outline-danger mt-4 mx-2">Cancel</a>
-      <button class="btn btn-outline-success mt-4 mx-2" type="submit">Create</button>
+      <input type="text" class="in mb-4" name="lib_address" value="{{ old_address }}" placeholder="Enter New Address or Branch">
+      <a href="{% url 'library' %}" class="btn btn-outline-danger mt-4 mx-2">Cancel</a>
+      <button class="btn btn-outline-success mt-4 mx-2" type="submit">Update</button>
     </form>
   </div>
 </div>
