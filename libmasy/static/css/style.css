@@ -327,66 +327,6 @@ tr:last-child td:last-child {
   width: 27%;
 }
 
-.kebab-container {
-  position: relative;
-  display: inline-block;
-  font-family: Arial, sans-serif;
-}
-
-/* Hide checkbox */
-#kebab-toggle {
-  display: none;
-}
-
-/* Kebab icon */
-.kebab-btn {
-  font-size: 22px;
-  cursor: pointer;
-  padding: 6px 10px;
-  border-radius: 6px;
-  user-select: none;
-}
-
-.kebab-btn:hover {
-  background-color: #0c1030;
-}
-
-/* Dropdown menu */
-.kebab-menu {
-  position: absolute;
-  top: 40px;
-  right: 0;
-  background-color: #0c1030;
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
-  border-radius: 10px;
-  /* box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15); */
-  list-style: none;
-  padding: 6px 0;
-  width: 160px;
-  display: none;
-  z-index: 1000;
-}
-
-.kebab-menu.show {
-  display: block;
-}
-
-.kebab-menu li {
-  padding: 10px 16px;
-  cursor: pointer;
-  font-size: 14px;
-  border-radius: 12px;
-}
-
-.kebab-menu li:hover {
-  background-color: #0c1040;
-}
-
-/* Danger item */
-.kebab-menu .danger {
-  color: #d93025;
-}
-
 /* open  */
 .arrow {
   height: 25px;

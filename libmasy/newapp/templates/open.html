@@ -53,17 +53,6 @@ Open
                 <button class="btn btn-outline-success">Login</button>
             </form>
             {% endif %}
-            <div class="kebab-container">
-                <input type="checkbox" id="kebab-toggle">
-                <label for="kebab-toggle" class="kebab-btn" aria-label="More options">⋮</label>
-
-                <ul class="kebab-menu">
-                    <li><a href="{% url 'library' %}" class="btn">Share</a></li>
-                    <li>Rename</li>
-                    <li>Archive</li>
-                    <li class="danger">Delete</li>
-                </ul>
-            </div>
         </div>
     </div>
 </nav>
@@ -141,22 +130,5 @@ Open
     {% endif %}
     <a href="{% url 'issued_books' lib_id %}" class="btn btn-outline-light mt-3">Issued Books</a>
 </div>
-
-<script>
-  document.addEventListener("click", function (event) {
-    document.querySelectorAll(".kebab-container").forEach(container => {
-      const button = container.querySelector(".kebab-btn");
-      const menu = container.querySelector(".kebab-menu");
-
-      if (button.contains(event.target)) {
-        // Toggle menu
-        menu.classList.toggle("show");
-      } else if (!container.contains(event.target)) {
-        // Click outside → close
-        menu.classList.remove("show");
-      }
-    });
-  });
-</script>
 
 {% endblock %}
