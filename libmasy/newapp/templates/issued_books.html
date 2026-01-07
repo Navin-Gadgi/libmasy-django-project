@@ -37,8 +37,8 @@
                     <td>{{book.issue_date}}</td>
                     <td>{{book.copies}}</td>
                     <td>
-                            <a href="{% url 'update' book.id lib_id %}" class="btn btn-sm btn-outline-light mx-1">Update</a>
-                            <a href="{% url 'return_book' book.id lib_id %}" class="btn btn-sm btn-outline-light mx-1">Return</a>
+                        <a href="{% url 'update_issued_book' book.id lib_id %}" class="btn btn-sm btn-outline-light mx-1">Update</a>
+                        <a href="{% url 'return_book' book.id lib_id %}" class="btn btn-sm btn-outline-light mx-1">Return</a>
                     </td>
                 </tr>
                 {% endfor %}

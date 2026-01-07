@@ -2,7 +2,11 @@
 {% load static %}
 
 {% block title %}
- Issue Book
+{% if not book_ins %}
+Issue Book
+{% else %}
+Update Issued Book
+{% endif %}
 {% endblock %}
 
 {% block navbar %}
@@ -11,13 +15,24 @@
 {% block contant %}
 <div class="parent">
   <div class="form text-center gap-5">
+    {% if not book_ins %}
     <h1 class="mb-5">Issue Book</h1>
+    {% else %}
+    <h1 class="mb-5">Update Issue Book</h1>
+    {% endif %}
     <form method="post">
       {% csrf_token %}
+      {% if not book_ins %}
       <input type="text" class="in mb-4" name="issuer_name" placeholder="Issuer Name" required>
-      <input type="number" value="1" class="in mb-4" name="copies" placeholder="Number of Copies" required>
+      <input type="number" value="1" class="in mb-4" name="copies" placeholder="Number of Copies" disable>
       <a href="{% url 'open' lib_id %}" class="btn btn-outline-danger mt-4 mx-2">Cancel</a>
       <button class="btn btn-outline-success mt-4 mx-2" type="submit">Issue Book</button>
+      {% else %}
+      <input type="text" class="in mb-4" name="issuer_name" value="{{ book_ins }}" placeholder="New Issuer Name" required>
+      <a href="{% url 'issued_books' lib_id %}" class="btn btn-outline-danger mt-4 mx-2">Cancel</a>
+      <button class="btn btn-outline-success mt-4 mx-2" type="submit">Update</button>
+
+      {% endif %}
     </form>
   </div>
 </div>

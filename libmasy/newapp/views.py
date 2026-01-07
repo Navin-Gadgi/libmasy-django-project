@@ -105,7 +105,7 @@ def update(request, book_id, lib_id):
         )
 
         return redirect('open', lib_id)
-    return render(request, "update.html", {'lib_id': lib_id, 'book_ins': book_ins})
+    return render(request, "add_book.html", {'lib_id': lib_id, 'book_ins': book_ins})
 
 @login_required
 def issued_books(request, lib_id):
@@ -176,9 +176,18 @@ def remove(request, book_id, lib_id):
     book.delete()
     return redirect('open', lib_id)
 
-# @login_required
-# def update_issued_book(request, book_id, lib_id):
+@login_required
+def update_issued_book(request, book_id, lib_id):
+    book_ins = get_object_or_404(IssuedBook, pk=book_id)
+    if request.method == 'POST':
+        issuer_name = request.POST.get("issuer_name")
+        Book.objects.filter(id=book_id).update(
+            issuer_name = issuer_name
+        )
 
+        return redirect('issued_books', lib_id)
+    issuer_name = book_ins.issuer
+    return render(request, "issue_book.html", {'lib_id': lib_id, 'book_ins': issuer_name})   
 
 @login_required
 def return_book(request, book_id, lib_id):
