@@ -1,13 +1,12 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.http import HttpResponse
 from .models import Library, Book, IssuedBook
-from .forms import LibraryForm, AddBookForm, UserRegistrationForm
+from .forms import UserRegistrationForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import login,logout
 # django rest framework imports
-from . serializers import BookSerializer, IssueBookSerializer, LibrarySerializer,ReturnBookSerializer
+from . serializers import BookSerializer, IssueBookSerializer, LibrarySerializer
 from rest_framework.decorators import api_view
-from rest_framework.response import Response
 
 # Create your views here.
 
@@ -48,7 +47,7 @@ def rename_library(request, lib_id):
         return redirect('library')
     old_name = lib.library_name
     old_address = lib.lib_address
-    return render(request, 'rename_library.html', {'lib_id':lib_id, 'old_name':old_name, 'old_address': old_address})
+    return render(request, 'lib_create.html', {'lib_id':lib_id, 'old_name':old_name, 'old_address': old_address})
         
 @login_required
 def lib_del(request, lib_id):
@@ -176,6 +175,9 @@ def remove(request, book_id, lib_id):
     book = get_object_or_404(Book, pk=book_id)
     book.delete()
     return redirect('open', lib_id)
+
+# @login_required
+# def update_issued_book(request, book_id, lib_id):
 
 
 @login_required

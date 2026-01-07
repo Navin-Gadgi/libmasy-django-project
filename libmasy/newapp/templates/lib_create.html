@@ -2,7 +2,13 @@
 {% load static %}
 
 {% block title %}
+
+{% if old_name %}
+  Update Library
+{% else %}
   Create Library
+{% endif %}
+
 {% endblock %}
 
 {% block navbar %}
@@ -11,13 +17,26 @@
 {% block contant %}
 <div class="parent">
   <div class="form text-center gap-5">
-    <h1 class="mb-5">Library Creation</h1>
+    {% if not old_name %}
+    <h1 class="mb-5">Create Library</h1>
+    {% else %}
+    <h1 class="mb-5">Update Library</h1>
+    {% endif %}
     <form method="post">
       {% csrf_token %}
-      <input type="text" class="in mb-4" name="library_name" placeholder="Enter Library Name" required>
-      <input type="text" class="in mb-4" name="lib_address" placeholder="Enter Library Address or Branch">
+      {% if not old_name %}
+        <input type="text" class="in mb-4" name="library_name" placeholder="Enter Library Name" required>
+        <input type="text" class="in mb-4" name="lib_address" placeholder="Enter Library Address or Branch">
+      {% else %}
+        <input type="text" class="in mb-4" name="library_name" value="{{ old_name }}" placeholder="Enter New Library Name" required>
+        <input type="text" class="in mb-4" name="lib_address" value="{{ old_address }}" placeholder="Enter New Address or Branch">
+      {% endif %}
       <a href="{% url 'library' %}" class="btn btn-outline-danger mt-4 mx-2">Cancel</a>
-      <button class="btn btn-outline-success mt-4 mx-2" type="submit">Create</button>
+      {% if not old_name %}
+        <button class="btn btn-outline-success mt-4 mx-2" type="submit">Create</button>
+      {% else %}
+        <button class="btn btn-outline-success mt-4 mx-2" type="submit">Update</button>
+      {% endif %}
     </form>
   </div>
 </div>
