@@ -8,9 +8,9 @@ About
 {% block navbar %}
 <nav class="navbar navbar-expand-lg" data-bs-theme="dark">
     <div class="container my-3">
-            <a class="navbar-brand" href="{% url 'home' %}">
-                <img src="{% static 'images/back3.PNG' %}" class="logo" alt="logo" height="40" width="100">
-            </a>
+        <a class="navbar-brand" href="{% url 'home' %}">
+            <img src="{% static 'images/back3.PNG' %}" class="logo" alt="logo" height="40" width="100">
+        </a>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mb-lg-0 mx-auto">
                 <li class="nav-item mx-4">
@@ -24,35 +24,28 @@ About
                 <li class="nav-item mx-4">
                     <a class="nav-link ms-5" href="/contact">Contact</a>
                 </li>
-                    {% if user.is_authenticated %}
-                    <li class="nav-item mx-4">
-                        <a class="nav-link ms-5" href="{% url 'library' %}">Library</a>
-                    </li>
-                    {% else %}
-                    <li class="nav-item mx-4">
-                        <a class="nav-link ms-5" href="{% url 'login' %}">Library</a>
-                    </li>
-                    {% endif %}
+                {% if user.is_authenticated %}
+                <li class="nav-item mx-4">
+                    <a class="nav-link ms-5" href="{% url 'library' %}">Library</a>
+                </li>
+                {% else %}
+                <li class="nav-item mx-4">
+                    <a class="nav-link ms-5" href="{% url 'login' %}">Library</a>
+                </li>
+                {% endif %}
             </ul>
             {% if user.is_authenticated %}
             <form method="post" class="mx-2" action="{% url 'logged_out' %}">
                 {% csrf_token %}
                 <button class="btn btn-outline-danger">Logout
-                    <svg 
-                            xmlns="http://www.w3.org/2000/svg"
-                            width="24" 
-                            height="24" 
-                            viewBox="0 0 24 24" 
-                            fill="none" 
-                            stroke="currentColor" 
-                            stroke-width="2" 
-                            stroke-linecap="round" 
-                            stroke-linejoin="round" 
-                            class="icon icon-tabler icons-tabler-outline icon-tabler-logout">
-                            <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
-                            <path d="M14 8v-2a2 2 0 0 0 -2 -2h-7a2 2 0 0 0 -2 2v12a2 2 0 0 0 2 2h7a2 2 0 0 0 2 -2v-2" />
-                            <path d="M9 12h12l-3 -3" />
-                            <path d="M18 15l3 -3" /></svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                        class="icon icon-tabler icons-tabler-outline icon-tabler-logout">
+                        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                        <path d="M14 8v-2a2 2 0 0 0 -2 -2h-7a2 2 0 0 0 -2 2v12a2 2 0 0 0 2 2h7a2 2 0 0 0 2 -2v-2" />
+                        <path d="M9 12h12l-3 -3" />
+                        <path d="M18 15l3 -3" />
+                    </svg>
                 </button>
             </form>
             {% else %}
@@ -73,68 +66,79 @@ About
 
 {% block contant %}
 
-<div class="container about about-grade2 mt-2">
-    <h1>About LibMaSy</h1><br>
-    <p class="fs-5">
-        LibMaSy (Library Management System) is a modern, efficient, and user-focused
+<div class="text-center mt-2 about mx-auto p-3">
+    <h1 class="abouthead">About LibMaSy</h1>
+    <p class="fw-light">LibMaSy(Library Management System) is a modern, efficient, and user-focused
         web application designed to simplify and digitalize library book management.
-        It provides a structured and reliable platform to manage library resources using
-        essential CRUD (Create, Read, Update, Delete) operations.
-    </p>
-
-    <p class="fs-5">
-        The system enables users to maintain accurate and up-to-date book records while
-        reducing manual effort and paperwork. LibMaSy is built with scalability and
-        simplicity in mind, making it suitable for academic institutions, small libraries,
-        and project-based implementations.
-    </p>
-
-    <p class="fs-5">Key Features:</p>
-    <ul class="fs-5">
-        <li><b>Book Management:</b> Add, view, update, and delete book records with ease</li>
-        <li><b>Data Accuracy:</b> Ensures consistent and error-free book information</li>
-        <li><b>User-Friendly Interface:</b> Clean, responsive design powered by modern web technologies</li>
-        <li><b>Efficient Workflow:</b> Streamlines routine library operations and record handling</li>
-        <li><b>Scalable Design:</b> Can be extended with additional features such as user management and book issuance
-        </li>
-    </ul>
-
-    <p class="fs-5"> With LibMaSy, users can easily add new books, view available records, update book details, and
-        remove
-        outdated entries.The system is built with simplicity in mind, ensuring a smooth and user-friendly experience for
-        students,
-        librarians, and administrators.</p>
-
-  <p class="fs-5"> LibMaSy follows a structured and modular development approach, ensuring maintainability and future
-        enhancement. The system leverages modern web development practices and frameworks to deliver a responsive and
-        reliable experience.</p>
-
-    <p class="fs-5"> LibMaSy was developed as a practical implementation of real-world application development concepts.
-        It demonstrates:</p>
-
-    <ul class="fs-5">
-        <li>Effective use of CRUD operations</li>
-        <li>Integration of backend and frontend technologies</li>
-        <li>Clean project structure and best development practices</li>
-    </ul>
-
-    <p class="fs-5">This project reflects problem-solving skills and an understanding of software design principles.</p>
-
-    <p class="fs-5">
-        The vision of LibMaSy is to provide a simple yet powerful digital solution for library management that enhances 
-        organization, accessibility, and efficiency while laying a strong foundation for future feature expansion.
     </p>
 </div>
-{% endblock %}
-
-{% block footer %}
-    <footer class="top-100">
-        <hr>
-        <p class="text-center foot">
-            © 2026 LibMasy | Library Management System Designed by Navin Gadgi | Connect on:
-            <a href="https://www.linkedin.com/in/navin-gadgi/"><img class="mx-1" src="{% static 'images/linkedin.png' %}" alt="linkedIn" width="20px" height="20px"></a>
-            <a href="https://github.com/Navin-Gadgi"><img class="mx-1" src="{% static 'images/github-sign.png' %}" alt="linkedIn" width="20px" height="20px"></a>
-        </p>        
-    </footer>
-
+<div class="container mt-3">
+    <div class="row featurette p-3 d-flex align-items-center justify-content-center aboutcard rounded-4">
+        <div class="col-md-7">
+            <h2 class="featurette-heading text-center">Key Features</h2>
+            <p class="fs-5">
+            <ul class="fs-5">
+                <li><b>Book Management:</b> Add, view, update, and delete book records with ease</li>
+                <li><b>Data Accuracy:</b> Ensures consistent and error-free book information</li>
+                <li><b>User-Friendly Interface:</b> Clean, responsive design powered by modern web technologies</li>
+                <li><b>Efficient Workflow:</b> Streamlines routine library operations and record handling</li>
+                <li><b>Scalable Design:</b> Can be extended with additional features such as user management and book
+                    issuance
+                </li>
+            </ul>
+            </p>
+        </div>
+        <div class="col-md-5">
+            <img class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto rounded-4"
+                src="{% static 'images/lib3.avif' %}" alt="image" height="500px" width="500px">
+        </div>
+    </div>
+    <div class="row featurette p-3 d-flex align-items-center justify-content-center mt-5 aboutcard rounded-4">
+        <div class="col-md-7 order-md-2">
+            <h2 class="featurette-heading text-center">Technology & Architecture</h2>
+            <p class="fs-5">
+                LibMaSy follows a structured and modular development approach, ensuring maintainability and future
+                enhancement. The system leverages modern web development practices and frameworks to deliver a
+                responsive and reliable experience.
+            </p>
+        </div>
+        <div class="col-md-5 order-md-1">
+            <img class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto rounded-4"
+                src="{% static 'images/lib1.jpg' %}" alt="image" height="500px" width="500px">
+        </div>
+    </div>
+    <div class="row featurette p-3 d-flex align-items-center justify-content-center mt-5 aboutcard rounded-4">
+        <div class="col-md-7">
+            <h2 class="featurette-heading text-center">Purpose & Learning Outcome</h2>
+            <p class="fs-5">
+                LibMaSy was developed as a practical implementation of real-world application development concepts. It
+                demonstrates:
+            <ul class="fs-5">
+                <li>Effective use of CRUD operations</li>
+                <li>Integration of backend and frontend technologies</li>
+                <li>Clean project structure and best development practices</li>
+                <li>This project reflects problem-solving skills and an understanding of software design principles.
+                </li>
+            </ul>
+            </p>
+        </div>
+        <div class="col-md-5">
+            <img class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto rounded-4"
+                src="{% static 'images/lib2.jpg' %}" alt="image" height="500px" width="500px">
+        </div>
+    </div>
+    <div class="row featurette p-3 d-flex align-items-center justify-content-center mt-5 aboutcard rounded-4">
+        <div class="col-md-7 order-md-2">
+            <h2 class="featurette-heading text-center">Vision</h2>
+            <p class="fs-5">
+                The vision of LibMaSy is to provide a simple yet powerful digital solution for library management that enhances 
+                organization, accessibility, and efficiency while laying a strong foundation for future feature expansion.
+            </p>
+        </div>
+        <div class="col-md-5 order-md-1">
+            <img class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto rounded-4"
+                src="{% static 'images/lib4.avif' %}" alt="image" height="500px" width="500px">
+        </div>
+    </div>
+</div>
 {% endblock %}

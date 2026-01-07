@@ -6,61 +6,7 @@ Home
 {% endblock %}
 
 {% block navbar %}
-    <script>
-        const typingElement = document.getElementById('typing-effect');
 
-        const words = [
-            "Create Book",
-            "Issue Book",
-            "Update Records",
-            "Delete Records",
-        ];
-
-        let wordIndex = 0;
-        let charIndex = 0;
-        let isDeleting = false;
-
-        const typingSpeed = 50;
-        const deletingSpeed = 50;
-        const newWordDelay = 1200;
-
-        function typeDeleteLoop() {
-            const currentWord = words[wordIndex];
-
-            if (isDeleting) {
-
-                typingElement.textContent = currentWord.substring(0, charIndex - 1);
-                charIndex--;
-
-                if (charIndex === 0) {
-                    isDeleting = false;
-                    wordIndex++;
-                    if (wordIndex === words.length) {
-                        wordIndex = 0;
-                    }
-                    setTimeout(typeDeleteLoop, newWordDelay);
-                } else {
-                    setTimeout(typeDeleteLoop, deletingSpeed);
-                }
-
-            } else {
-
-                typingElement.textContent = currentWord.substring(0, charIndex + 1);
-                charIndex++;
-
-                if (charIndex === currentWord.length) {
-                    isDeleting = true;
-                    setTimeout(typeDeleteLoop, newWordDelay);
-                } else {
-                    setTimeout(typeDeleteLoop, typingSpeed);
-                }
-            }
-        }
-
-        document.addEventListener('DOMContentLoaded', (event) => {
-            setTimeout(typeDeleteLoop, newWordDelay);
-        });
-    </script>
 <nav class="navbar navbar-expand-lg" data-bs-theme="dark">
     <div class="container my-3">
         <a class="navbar-brand" href=""><img class="logo" src="../../static/images/back3.PNG" alt="logo" height="40"
@@ -143,4 +89,59 @@ Home
         {% endif %}
     </div>
 </div>
+    <script>
+        const typingElement = document.getElementById('typing-effect');
+
+        const words = [
+            "Create Book",
+            "Issue Book",
+            "Update Records",
+            "Delete Records",
+        ];
+
+        let wordIndex = 0;
+        let charIndex = 0;
+        let isDeleting = false;
+
+        const typingSpeed = 50;
+        const deletingSpeed = 50;
+        const newWordDelay = 1200;
+
+        function typeDeleteLoop() {
+            const currentWord = words[wordIndex];
+
+            if (isDeleting) {
+
+                typingElement.textContent = currentWord.substring(0, charIndex - 1);
+                charIndex--;
+
+                if (charIndex === 0) {
+                    isDeleting = false;
+                    wordIndex++;
+                    if (wordIndex === words.length) {
+                        wordIndex = 0;
+                    }
+                    setTimeout(typeDeleteLoop, newWordDelay);
+                } else {
+                    setTimeout(typeDeleteLoop, deletingSpeed);
+                }
+
+            } else {
+
+                typingElement.textContent = currentWord.substring(0, charIndex + 1);
+                charIndex++;
+
+                if (charIndex === currentWord.length) {
+                    isDeleting = true;
+                    setTimeout(typeDeleteLoop, newWordDelay);
+                } else {
+                    setTimeout(typeDeleteLoop, typingSpeed);
+                }
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', (event) => {
+            setTimeout(typeDeleteLoop, newWordDelay);
+        });
+    </script>
     {% endblock %}
