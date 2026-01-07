@@ -11,6 +11,11 @@ body {
   filter: drop-shadow(0 0 10px black);
 }
 
+.foot{
+  font-size: smaller;
+  /* background-color: #0c1010; */
+}
+
 /* home */
 .homeheader {
   font-size: 4rem;
