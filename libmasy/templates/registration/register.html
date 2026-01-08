@@ -1,4 +1,5 @@
-{% extends "layout.html" %}
+{% extends "layout2.html" %}
+{% load static %}
 
 {% block title %}
 Register
@@ -10,9 +11,8 @@ Register
 
 {% block contant %}
 <div class="parent">
-
     <div class="form2">
-        <h1 class="mb-5 text-center">Sign Up</h1>
+        <h1 class="text-center">Sign Up</h1>
         <form method="post">
             {% csrf_token %}
             {{form.as_p}}
@@ -29,3 +29,5 @@ Register
     </div>
 </div>
 {% endblock %}
+
+{% block footer %}{% endblock %}

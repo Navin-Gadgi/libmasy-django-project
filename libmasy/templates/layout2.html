@@ -36,23 +36,23 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mb-lg-0 mb-2 mx-auto">
                     <li class="nav-item mx-4">
-                        <a class="nav-link ms-5" aria-current="page" href="{% url 'home' %}">
+                        <a class="nav-link ms-3" aria-current="page" href="{% url 'home' %}">
                             Home
                         </a>
                     </li>
                     <li class="nav-item mx-4">
-                        <a class="nav-link ms-5" href="{% url 'about' %}">About</a>
+                        <a class="nav-link ms-3" href="{% url 'about' %}">About</a>
                     </li>
                     <li class="nav-item mx-4">
-                        <a class="nav-link ms-5" href="{% url 'contact' %}">Contact</a>
+                        <a class="nav-link ms-3" href="{% url 'contact' %}">Contact</a>
                     </li>
                     {% if user.is_authenticated %}
                     <li class="nav-item mx-4">
-                        <a class="nav-link ms-5 active" href="{% url 'library' %}">Library</a>
+                        <a class="nav-link ms-3 active" href="{% url 'library' %}">Library</a>
                     </li>
                     {% else %}
                     <li class="nav-item mx-4">
-                        <a class="nav-link ms-5 active" href="{% url 'login' %}">Library</a>
+                        <a class="nav-link ms-3 active" href="{% url 'login' %}">Library</a>
                     </li>
                     {% endif %}
                 </ul>
@@ -101,7 +101,7 @@
     <footer class="position-sticky top-100">
         <hr>
         <p class="text-center foot">
-            © 2026 LibMasy | Library Management System Designed by Navin Gadgi | Connect on:
+            © 2026 LibMasy | Library Management System Developed by Navin Gadgi | Connect on:
             <a href="https://www.linkedin.com/in/navin-gadgi/"><img class="mx-1" src="{% static 'images/linkedin.png' %}" alt="linkedIn" width="20px" height="20px"></a>
             <a href="https://github.com/Navin-Gadgi"><img class="mx-1" src="{% static 'images/github-sign.png' %}" alt="linkedIn" width="20px" height="20px"></a>
         </p>        
