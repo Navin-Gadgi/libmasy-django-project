@@ -4,15 +4,13 @@ from .models import Library, Book, IssuedBook
 from .forms import UserRegistrationForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import login,logout
+from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 
 # django rest framework imports
 from . serializers import BookSerializer, IssueBookSerializer, LibrarySerializer
 from rest_framework.decorators import api_view
 
 # Create your views here.
-
-def newapp(request):
-    return render(request, 'library.html')
 
 @login_required
 @api_view(['Get'])
@@ -66,8 +64,7 @@ def lib_del(request, lib_id):
         return redirect('library')
     return render(request, 'lib_delete.html', {'lib':lib})
 
-
-
+# Authantication views
 def register(request):
     if request.method == 'POST':
         form = UserRegistrationForm(request.POST)
@@ -81,12 +78,25 @@ def register(request):
         form = UserRegistrationForm()
     return render(request, 'registration/register.html', {'form':form})
 
+# def login_view(request):
+#     if request.method == 'POST':
+#         form = AuthenticationForm(request.POST)
+#         if form.is_valid():
+#             user = form.save(commit=False)
+#             user.set_password(form.cleaned_data['password1'])
+#             user.save()
+#             login(request, user)
+#             return redirect('library')
+#     else:
+#         # initial_data = ['username': "", 'password1': "", 'password2': ""]
+#         form = AuthenticationForm()
+#     return render(request, 'registration/login.html', {'form': form})
+
 def logged_out(request):
     logout(request)
     return render(request, 'registration/logout.html')
 
 # Django rest framework views
-
 @login_required
 @api_view(['GET'])
 def open(request, lib_id):
