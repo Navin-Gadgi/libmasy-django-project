@@ -99,7 +99,8 @@ body {
   margin-left: auto;
   margin-right: auto;
   width: 520px;
-  background: linear-gradient(180deg, #0b1220, #070b14);
+  /* background: linear-gradient(180deg, #0b1220, #070b14); */
+  background-color: #0c1030;
   border-radius: 14px;
   padding: 30px 28px;
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
@@ -185,7 +186,7 @@ body {
   margin-right: auto;
 }
 
-.lib2 {
+.libcard {
   background-color: #0c1030;
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
   border-radius: 14px;
@@ -357,14 +358,21 @@ tr:last-child td:last-child {
 .parent {
   display: grid;
   place-items: center;
-  height: 80vh;
+  height: 70vh;
+}
+
+.parent2 {
+  display: grid;
+  place-items: center;
+  height: 100vh;
 }
 
 .form2 {
   margin-left: auto;
   margin-right: auto;
   width: 900px;
-  background: linear-gradient(180deg, #0b1220, #070b14);
+  /* background: linear-gradient(180deg, #0b1220, #070b14); */
+  background-color: #0c1030;
   border-radius: 14px;
   padding: 25px;
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);

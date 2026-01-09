@@ -4,6 +4,7 @@ from .models import Library, Book, IssuedBook
 from .forms import UserRegistrationForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import login,logout
+
 # django rest framework imports
 from . serializers import BookSerializer, IssueBookSerializer, LibrarySerializer
 from rest_framework.decorators import api_view
@@ -14,11 +15,17 @@ def newapp(request):
     return render(request, 'library.html')
 
 @login_required
+@api_view(['Get'])
 def library(request):
-    lib = Library.objects.filter(user=request.user).order_by('-created_at').reverse
-    return render(request, 'library.html', {'lib':lib})
+    lib = Library.objects.filter(user=request.user)
+    serializer = LibrarySerializer(lib, many=True)
+    return render(request, 'library.html', {'lib':serializer.data})
+# def library(request):
+#     lib = Library.objects.filter(user=request.user).order_by('-created_at').reverse
+#     return render(request, 'library.html', {'lib':lib})
 
 @login_required
+@api_view(['Get','Post'])
 def lib_create(request):
     if request.method == "POST":
         name = request.POST.get("library_name")
@@ -33,6 +40,7 @@ def lib_create(request):
     return render(request, 'lib_create.html')
 
 @login_required
+@api_view(['Get','Post'])
 def rename_library(request, lib_id):
     lib = get_object_or_404(Library, pk=lib_id, user = request.user)
     if request.method == 'POST':
@@ -50,6 +58,7 @@ def rename_library(request, lib_id):
     return render(request, 'lib_create.html', {'lib_id':lib_id, 'old_name':old_name, 'old_address': old_address})
         
 @login_required
+@api_view(['Get','Post'])
 def lib_del(request, lib_id):
     lib = get_object_or_404(Library, pk=lib_id, user = request.user)
     if request.method == 'POST':
@@ -79,7 +88,7 @@ def logged_out(request):
 # Django rest framework views
 
 @login_required
-@api_view(['GET','POST'])
+@api_view(['GET'])
 def open(request, lib_id):
     books = Book.objects.filter(library=lib_id)
     serializer = BookSerializer(books, many=True)
@@ -87,6 +96,7 @@ def open(request, lib_id):
     return render(request, 'open.html', { 'books': serializer.data, 'lib_id': lib_id })
 
 @login_required
+@api_view(['Get','Post'])
 def update(request, book_id, lib_id):
     book_ins = get_object_or_404(Book, pk=book_id)
     if request.method == 'POST':
@@ -108,12 +118,14 @@ def update(request, book_id, lib_id):
     return render(request, "add_book.html", {'lib_id': lib_id, 'book_ins': book_ins})
 
 @login_required
+@api_view(['Get'])
 def issued_books(request, lib_id):
     issued_books = IssuedBook.objects.filter(library=lib_id)
     serializer = IssueBookSerializer(issued_books, many=True)
     return render(request, 'issued_books.html', { 'issued_books': serializer.data, 'lib_id': lib_id })
 
 @login_required
+@api_view(['Get','Post'])
 def add_book(request, lib_id):
     if request.method == "POST":
         title = request.POST.get("title")
@@ -135,6 +147,7 @@ def add_book(request, lib_id):
     return render(request, "add_book.html", {'lib_id': lib_id})
 
 @login_required
+@api_view(['Get','Post'])
 def issue_book(request, book_id, lib_id):
     book_obj = get_object_or_404(Book, id=book_id)
     cur_copies = book_obj.copies
@@ -171,18 +184,20 @@ def issue_book(request, book_id, lib_id):
     return render(request, "issue_book.html", {"lib_id": lib_id})
 
 @login_required
+@api_view(['Get'])
 def remove(request, book_id, lib_id):
     book = get_object_or_404(Book, pk=book_id)
     book.delete()
     return redirect('open', lib_id)
 
 @login_required
+@api_view(['Get','Post'])
 def update_issued_book(request, book_id, lib_id):
     book_ins = get_object_or_404(IssuedBook, pk=book_id)
     if request.method == 'POST':
         issuer_name = request.POST.get("issuer_name")
-        Book.objects.filter(id=book_id).update(
-            issuer_name = issuer_name
+        IssuedBook.objects.filter(id=book_id).update(
+            issuer = issuer_name
         )
 
         return redirect('issued_books', lib_id)
@@ -190,6 +205,7 @@ def update_issued_book(request, book_id, lib_id):
     return render(request, "issue_book.html", {'lib_id': lib_id, 'book_ins': issuer_name})   
 
 @login_required
+@api_view(['Get','Post'])
 def return_book(request, book_id, lib_id):
     issue_book_obj = get_object_or_404(IssuedBook, pk=book_id)
 

@@ -11,26 +11,30 @@ Contact
         <a class="navbar-brand" href="{% url 'home' %}">
             <img src="{% static 'images/back3.PNG' %}" class="logo" alt="logo" height="40" width="100">
         </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mb-lg-0 mx-auto">
                 <li class="nav-item mx-4">
-                    <a class="nav-link ms-5" aria-current="page" href="{% url 'home' %}">
+                    <a class="nav-link ms-3" aria-current="page" href="{% url 'home' %}">
                         Home
                     </a>
                 </li>
                 <li class="nav-item mx-4">
-                    <a class="nav-link ms-5" href="/about">About</a>
+                    <a class="nav-link ms-3" href="/about">About</a>
                 </li>
                 <li class="nav-item mx-4">
-                    <a class="nav-link active ms-5" href="/contact">Contact</a>
+                    <a class="nav-link active ms-3" href="/contact">Contact</a>
                 </li>
                 {% if user.is_authenticated %}
                 <li class="nav-item mx-4">
-                    <a class="nav-link ms-5" href="{% url 'library' %}">Library</a>
+                    <a class="nav-link ms-3" href="{% url 'library' %}">Library</a>
                 </li>
                 {% else %}
                 <li class="nav-item mx-4">
-                    <a class="nav-link ms-5" href="{% url 'login' %}">Library</a>
+                    <a class="nav-link ms-3" href="{% url 'login' %}">Library</a>
                 </li>
                 {% endif %}
             </ul>
@@ -70,21 +74,23 @@ Contact
         <h5 class="fw-light mt-3">Have a question about LibMasy? Send us a message and we'll respond soon.</h5>
         <h5 class="fw-light mt-4">We are available for questions, feedback, or collaboration opportunities. Let us know
             how we can help!
-            You can also contact us at <a href="mailto:gadginavinp@gmail.com" class="links"><u>gadginavin@gmail.com</u></a> for any queries.</h5>
+            You can also contact us at <a href="mailto:gadginavinp@gmail.com"
+                class="links"><u>gadginavin@gmail.com</u></a> for any queries.</h5>
         <h5 class="fw-light mt-4">You can also connect on social media.</h5>
 
         <div class="social-links mt-4">
             <div id="twitter" class="social-btn flex-center">
-                <a href="https://x.com/NavinGadgi"><img src="{% static 'images\x2.png' %}" height="24" width="24" alt="x"></a><span><a href="https://x.com/NavinGadgi" class="links">X</a></span>
+                <a href="https://x.com/NavinGadgi"><img src="{% static 'images\x2.png' %}" height="24" width="24"
+                        alt="x"></a><span><a href="https://x.com/NavinGadgi" class="links">X</a></span>
             </div>
 
             <div id="linkedin" class="social-btn flex-center"><a href="https://www.linkedin.com/in/navin-gadgi/">
-                <svg viewBox="0 0 24 24" height="24" width="24" xmlns="http://www.w3.org/2000/svg">
-                    <path
-                        d="M4.98 3.5c0 1.381-1.11 2.5-2.48 2.5s-2.48-1.119-2.48-2.5c0-1.38 1.11-2.5 2.48-2.5s2.48 1.12 2.48 2.5zm.02 
+                    <svg viewBox="0 0 24 24" height="24" width="24" xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            d="M4.98 3.5c0 1.381-1.11 2.5-2.48 2.5s-2.48-1.119-2.48-2.5c0-1.38 1.11-2.5 2.48-2.5s2.48 1.12 2.48 2.5zm.02 
                         4.5h-5v16h5v-16zm7.982 0h-4.968v16h4.969v-8.399c0-4.67 6.029-5.052 6.029 0v8.399h4.988v-10.131c0-7.88-8.922-7.593-11.018-3.714v-2.155z">
-                    </path>
-                </svg></a><span><a href="https://www.linkedin.com/in/navin-gadgi/" class="links">Linkedin</a></span>
+                        </path>
+                    </svg></a><span><a href="https://www.linkedin.com/in/navin-gadgi/" class="links">Linkedin</a></span>
             </div>
 
             <div id="github" class="social-btn flex-center"> <a href="https://github.com/Navin-Gadgi">

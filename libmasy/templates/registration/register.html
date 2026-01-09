@@ -10,9 +10,9 @@ Register
 {% endblock %}
 
 {% block contant %}
-<div class="parent">
-    <div class="form2">
-        <h1 class="text-center">Sign Up</h1>
+<div class="parent2">
+    <div class="form2 my-auto">
+        <h1 class="text-center mb-3">Sign Up</h1>
         <form method="post">
             {% csrf_token %}
             {{form.as_p}}
@@ -21,9 +21,9 @@ Register
                 {% if user.is_authenticated %}
                 <a href="{% url 'library' %}" class="btn btn-outline-primary mt-3">Cancel</a>
                 {% else %}
-                <a href="{% url 'home' %}" class="btn btn-outline-primary mt-3">Cancel</a>
+                <a href="{% url 'home' %}" class="btn btn-outline-danger mt-3">Cancel</a>
                 {% endif %}
-                <button class="btn btn-outline-success mt-3 mx-4">Sign Up</button>
+                <button class="btn btn-outline-primary mt-3 mx-4">Sign Up</button>
             </div>
         </form>
     </div>

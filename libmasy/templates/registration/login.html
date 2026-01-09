@@ -8,17 +8,18 @@ Login
 {% endblock %}
 
 {% block contant %}
-<div class="parent">
-
+<div class="parent2">
     <div class="form text-center">
         <h1 class="mb-5">Login</h1>
         <form method="post">
             {% csrf_token %}
             {{form.as_p}}
-            <h5 class="mt-4">Don't Have account? <a href="{% url 'register' %}">Register</a></h5>
-            <a href="{% url 'home' %}" class="btn btn-outline-primary mt-3 mx-2">Cancel</a>
-            <button class="btn btn-outline-success mt-3 mx-2">Login</button>
+            <h5 class="mt-4">Don't Have an account? <a href="{% url 'register' %}">Sign Up</a></h5>
+            <a href="{% url 'home' %}" class="btn btn-outline-danger mt-3 mx-2">Cancel</a>
+            <button class="btn btn-outline-primary mt-3 mx-2">Login</button>
         </form>
     </div>
 </div>
 {% endblock %}
+
+{% block footer %}{% endblock %}

@@ -12,27 +12,31 @@ Open
         <a class="navbar-brand" href="{% url 'home' %}">
             <img src="{% static 'images/back3.PNG' %}" class="logo" alt="logo" height="40" width="100">
         </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mb-lg-0 mb-2 mx-auto">
                 <li class="nav-item mx-4">
 
-                    <a class="nav-link ms-5" aria-current="page" href="{% url 'home' %}">
+                    <a class="nav-link ms-3" aria-current="page" href="{% url 'home' %}">
                         Home
                     </a>
                 </li>
                 <li class="nav-item mx-4">
-                    <a class="nav-link ms-5" href="{% url 'about' %}">About</a>
+                    <a class="nav-link ms-3" href="{% url 'about' %}">About</a>
                 </li>
                 <li class="nav-item mx-4">
-                    <a class="nav-link ms-5" href="{% url 'contact' %}">Contact</a>
+                    <a class="nav-link ms-3" href="{% url 'contact' %}">Contact</a>
                 </li>
                 {% if user.is_authenticated %}
                 <li class="nav-item mx-4">
-                    <a class="nav-link ms-5 active" href="{% url 'library' %}">Library</a>
+                    <a class="nav-link ms-3 active" href="{% url 'library' %}">Library</a>
                 </li>
                 {% else %}
                 <li class="nav-item mx-4">
-                    <a class="nav-link ms-5 active" href="{% url 'login' %}">Library</a>
+                    <a class="nav-link ms-3 active" href="{% url 'login' %}">Library</a>
                 </li>
                 {% endif %}
             </ul>
