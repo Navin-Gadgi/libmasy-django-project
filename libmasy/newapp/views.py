@@ -4,7 +4,6 @@ from .models import Library, Book, IssuedBook
 from .forms import UserRegistrationForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import login,logout
-from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 
 # django rest framework imports
 from . serializers import BookSerializer, IssueBookSerializer, LibrarySerializer
@@ -67,11 +66,10 @@ def lib_del(request, lib_id):
 # Authantication views
 def register(request):
     if request.method == 'POST':
+        print(request.POST)
         form = UserRegistrationForm(request.POST)
         if form.is_valid():
-            user = form.save(commit=False)
-            user.set_password(form.cleaned_data['password1'])
-            user.save()
+            user = form.save()
             login(request, user)
             return redirect('library')
     else:

@@ -11,22 +11,23 @@ Login
 <div class="parent2">
     <div class="contactform text-center">
         <h1 class="mb-5">Login</h1>
+        {% if form.non_field_errors %}
+            <h5 class="text-danger mb-3">{{ form.non_field_errors }}</h5>
+        {% endif %}
         <form method="post" action="{% url 'login' %}">
             {% csrf_token %}
             <div class="mb-2">
-                <label for="{{form.username.id_for_label}}" class="lab">Username</label>
-                <input type="text" class="in" placeholder="@Username" name="{{form.username.name}}">
-                {% if username.errors %}
+                <label class="lab">Username</label>
+                <input type="text" class="in" placeholder="Username" name="{{form.username.name}}" required>
                 <span class="text-danger">{{ form.username.errors }}</span>
-                {% endif %}
             </div>
+
             <div class="mb-2">
-                <label for="{{form.password.id_for_label}}" class="lab">Password</label>
-                <input type="password" class="in" placeholder="••••••••" name="{{ form.password.name }}">
-                {% if password.errors %}
+                <label class="lab">Password</label>
+                <input type="password" class="in" placeholder="••••••••" name="{{ form.password.name }}" required>
                 <span class="text-danger">{{ form.password.errors }}</span>
-                {% endif %}
             </div>
+
             <h5 class="mt-4">Don't Have an account? <a href="{% url 'register' %}">Sign Up</a></h5>
             <a href="{% url 'home' %}" class="btn btn-outline-danger mt-3 mx-2">Cancel</a>
             <button class="btn btn-outline-primary mt-3 mx-2">Login</button>

@@ -23,7 +23,7 @@ class Book(models.Model):
     created_at = models.DateField(auto_now_add=True)
 
     def __str__(self):
-        return self.title
+        return f'{self.library.user.username} - {self.library.library_name} - {self.title}'
     
 class IssuedBook(models.Model):
     library = models.ForeignKey(Library, on_delete=models.CASCADE)
@@ -35,4 +35,5 @@ class IssuedBook(models.Model):
     is_returned = models.BooleanField(default=False)
 
     def __str__(self):
-        return self.book.title 
+        return f'{self.book.library.user.username} - {self.book.library.library_name} - {self.book.title}'
+        # return self.book.title 
