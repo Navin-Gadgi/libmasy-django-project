@@ -19,7 +19,6 @@ body {
 .homeheader {
   font-size: 4rem;
   font-weight: 500;
-  /* margin-bottom: 0.5rem; */
 }
 
 .subtitle {
@@ -78,7 +77,6 @@ body {
   padding: 30px 28px;
   box-shadow: 0 0px 1px whitesmoke;
   border: 1px solid rgba(255, 255, 255, 0.06);
-  /* margin-top: -20px; */
 }
 
 /* contact */
@@ -130,22 +128,9 @@ body {
 
 .lib-div {
   border: 1px;
-  /* box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6); */
   justify-content: center;
   text-align: center;
   padding: 1rem;
-  border-radius: 12px;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-.lib-div2 {
-  border: 1px;
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
-  justify-content: center;
-  text-align: center;
-  margin-top: 7rem;
-  padding: 3rem;
   border-radius: 12px;
   margin-left: auto;
   margin-right: auto;
@@ -203,7 +188,6 @@ tr:last-child td:last-child {
   border-bottom-right-radius: 10px;
 }
 
-/* From Uiverse.io by andrew-demchenk0 */
 .button {
   --main-focus: #2d8cf0;
   --font-color: #dedede;
@@ -339,10 +323,6 @@ tr:last-child td:last-child {
   height: 100vh;
 }
 
-body {
-  background-color: #0c1020;
-}
-
 .social-links,
 .flex-center {
   display: flex;
@@ -359,7 +339,6 @@ body {
   border-radius: 10px;
   box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.1);
   background: #093eb0;
-  /* background: linear-gradient(135deg, #093eb0, #3b82f6); */
   margin: 5px;
   transition: 0.3s;
   justify-content: center;
@@ -384,7 +363,6 @@ body {
 }
 
 #linkedin svg {
-  /* fill: #0e76a8; */
   fill: #1099d8;
 }
 

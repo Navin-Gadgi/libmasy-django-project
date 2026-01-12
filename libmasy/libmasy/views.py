@@ -2,8 +2,6 @@ from django.http import HttpResponse
 from django.shortcuts import render
 
 def home(request):
-    # var = request.GET.get('text', 'default')
-    # print(var)
     return render(request, 'webtemps/home.html')
 
 def about(request):
