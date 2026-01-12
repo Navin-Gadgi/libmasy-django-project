@@ -131,3 +131,4 @@ LOGIN_URL = '/accounts/login/'
 LOGIN_REDIRECT_URL = '/library/'
 LOGOUT_REDIRECT_URL = '/'
 
+STATIC_ROOT = BASE_DIR / 'staticfiles'
