@@ -12,73 +12,17 @@ Home
 <div class="parent">
     <div class="text-center">
 
-        <h1 class="homeheader mb-2">Welcome to The LibMaSy 🤖</h1>
+        <h1 class="homeheader">Welcome to The LibMaSy 🤖</h1>
         
-        <p class="subtitle mt-2">
-            You can
-            <span id="typing-effect"></span>
+        <p class="subtitle">
+            A Smart Library Management System
         </p>
         
         {% if user.is_authenticated %}
-        <a href="{% url 'library' %}" class="homebut btn mt-2" type="submit">Let's Start</a>
+        <a href="{% url 'library' %}" class="homebut btn mt-3" type="submit">Let's Start</a>
         {% else %}
-        <a href="{% url 'login' %}" class="homebut btn mt-2" type="submit">Let's Start</a>
+        <a href="{% url 'login' %}" class="homebut btn mt-3" type="submit">Let's Start</a>
         {% endif %}
     </div>
 </div>
-    <script>
-        const typingElement = document.getElementById('typing-effect');
-
-        const words = [
-            "Create Book",
-            "Issue Book",
-            "Update Records",
-            "Delete Records",
-        ];
-
-        let wordIndex = 0;
-        let charIndex = 0;
-        let isDeleting = false;
-
-        const typingSpeed = 50;
-        const deletingSpeed = 50;
-        const newWordDelay = 1200;
-
-        function typeDeleteLoop() {
-            const currentWord = words[wordIndex];
-
-            if (isDeleting) {
-
-                typingElement.textContent = currentWord.substring(0, charIndex - 1);
-                charIndex--;
-
-                if (charIndex === 0) {
-                    isDeleting = false;
-                    wordIndex++;
-                    if (wordIndex === words.length) {
-                        wordIndex = 0;
-                    }
-                    setTimeout(typeDeleteLoop, newWordDelay);
-                } else {
-                    setTimeout(typeDeleteLoop, deletingSpeed);
-                }
-
-            } else {
-
-                typingElement.textContent = currentWord.substring(0, charIndex + 1);
-                charIndex++;
-
-                if (charIndex === currentWord.length) {
-                    isDeleting = true;
-                    setTimeout(typeDeleteLoop, newWordDelay);
-                } else {
-                    setTimeout(typeDeleteLoop, typingSpeed);
-                }
-            }
-        }
-
-        document.addEventListener('DOMContentLoaded', (event) => {
-            setTimeout(typeDeleteLoop, newWordDelay);
-        });
-    </script>
     {% endblock %}

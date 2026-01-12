@@ -14,6 +14,7 @@
     <h1 class="mb-5">Return Book</h1>
     <form method="post">
       {% csrf_token %}
+      <label class="lab">Copies</label>
       <input type="number" value="1" class="in mb-4" name="copies" placeholder="Number of Copies" required>
       <a href="{% url 'issued_books' lib_id %}" class="btn btn-outline-danger mt-4 mx-2">Cancel</a>
       <button class="btn btn-outline-success mt-4 mx-2" type="submit">Return Book</button>

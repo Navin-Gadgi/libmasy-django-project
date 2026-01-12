@@ -16,5 +16,4 @@ urlpatterns = [
     path('<int:book_id>/<int:lib_id>/remove/', views.remove, name='remove'),
     path('register/', views.register, name="register"),
     path('logout/', views.logged_out, name='logged_out'),
-    # path('login/', views.login_view, name='login'),
 ]
