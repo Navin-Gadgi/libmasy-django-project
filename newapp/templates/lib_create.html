@@ -22,13 +22,17 @@
     {% else %}
     <h1 class="mb-5">Update Library</h1>
     {% endif %}
-    <form method="post">
+    <form method="post" class="text-center">
       {% csrf_token %}
       {% if not old_name %}
+        <label class="lab">Library Name</label>
         <input type="text" class="in mb-4" name="library_name" placeholder="Enter Library Name" required>
+        <label class="lab">Library Address</label>
         <input type="text" class="in mb-4" name="lib_address" placeholder="Enter Library Address or Branch">
-      {% else %}
+        {% else %}
+        <label class="lab">New Name</label>
         <input type="text" class="in mb-4" name="library_name" value="{{ old_name }}" placeholder="Enter New Library Name" required>
+        <label class="lab">New Address</label>
         <input type="text" class="in mb-4" name="lib_address" value="{{ old_address }}" placeholder="Enter New Address or Branch">
       {% endif %}
       <a href="{% url 'library' %}" class="btn btn-outline-danger mt-4 mx-2">Cancel</a>
