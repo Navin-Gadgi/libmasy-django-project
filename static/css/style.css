@@ -47,7 +47,8 @@ body {
 
 /* about */
 .about {
-  width: 600px;
+  max-width: 600px;
+  min-width: 300px;
   border-radius: 5rem;
   filter: drop-shadow(2px 2px 3px rgba(158, 232, 239, 0.5));
 }
@@ -63,7 +64,8 @@ body {
 .form {
   margin-left: auto;
   margin-right: auto;
-  width: 520px;
+  max-width: 520px;
+  min-width: 220px;
   background: linear-gradient(180deg, #0b1220, #070b14);
   border-radius: 14px;
   padding: 30px 28px;
@@ -71,15 +73,17 @@ body {
   border: 1px solid rgba(255, 255, 255, 0.06);
 }
 
+
+/* contact */
 .contactform {
-  width: 520px;
+  max-width: 520px;
+  min-width: 320px;
   border-radius: 14px;
   padding: 30px 28px;
   box-shadow: 0 0px 1px whitesmoke;
   border: 1px solid rgba(255, 255, 255, 0.06);
 }
 
-/* contact */
 .lab {
   display: block;
   font-size: 16px;
@@ -108,8 +112,14 @@ body {
   box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.25);
 }
 
+.gtdiv {
+  max-width: 630px;
+  min-width: 300;
+}
+
 .conbut {
-  width: 460px;
+  max-width: 460px;
+  min-width: 260px;
   padding: 14px 0;
   border-radius: 10px;
   font-size: 15px;
@@ -145,25 +155,11 @@ body {
   width: 250px;
 }
 
-.cont {
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
-  border-radius: 14px;
-  width: 840px;
-  margin-top: 2rem;
-  margin-left: 20rem;
-  padding: 1rem;
-}
-
 .wid {
   width: 72px;
 }
 
 /* open */
-.tab {
-  border-collapse: separate;
-  border-spacing: 0;
-  border-radius: 10px;
-}
 
 tr:first-child th:first-child,
 tr:first-child td:first-child {
@@ -259,15 +255,6 @@ tr:last-child td:last-child {
 }
 
 /* open, issue book */
-.atag {
-  width: 155px;
-  margin-top: -42px;
-}
-
-.atag2 {
-  width: 155px;
-  margin-top: -62px;
-}
 
 .myTable {
   width: 100%;
@@ -309,6 +296,10 @@ tr:last-child td:last-child {
 .arrow {
   height: 25px;
   width: 30px;
+}
+
+.issuediv{
+  width: 89px;
 }
 
 .parent {

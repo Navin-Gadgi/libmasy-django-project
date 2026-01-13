@@ -7,12 +7,13 @@
 
 {% block contant %}
 
-<div class="table-responsive container text-center mt-4 tab">
-    <h2>List of Issued Books</h2>
-    <div class="atag2">
-        <a href="{% url 'open' lib_id %}" class="mt-3 btn btn-outline-light">
+<div class="container text-center mt-4">
+    <div class="container navbar mt-3">
+        <a href="{% url 'open' lib_id %}" class="btn btn-outline-light">
             <span><img class="arrow" src="{% static 'images/left.png' %}" alt="arrow"></span><span>Back</span>
         </a>
+        <h2 class="mx-auto">List of Issued Books</h2>
+        <div class="issuediv"></div>
     </div>
     {% if not issued_books %}
       <h3 class="mt-5">No Book Issued Yet</h3>

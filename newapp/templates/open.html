@@ -42,6 +42,7 @@ Open
                         </li>
                         {% endif %}
                     </ul>
+                    <a href="{% url 'rename_library' lib_id %}" class="btn btn-outline-primary">Update Library</a>
                     {% if user.is_authenticated %}
                     <form method="post" class="mx-2" action="{% url 'logged_out' %}">
                         {% csrf_token %}
@@ -71,25 +72,27 @@ Open
 
 {% block contant %}
 
-<div class="table-responsive container text-center mt-4 tab">
-    <h2>List of Available Books</h2>
-    <div class="atag2">
-    <a href="{% url 'library' %}" class="mt-3 btn btn-outline-light">
-        <span class=""><img class="arrow" src="{% static 'images/left.png' %}" alt="arrow"></span><span>Back</span>
-    </a>
-    </div>
-    <div class="addbookbut text-center ms-auto">
-        <form action="{% url 'add_book' lib_id %}">
-            <button class="button" type="sub mit">
-                <span class="button__text">Add Book</span>
-                <span class="button__icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke-width="2"
+<div class="container navbar text-center mt-4">
+    <div class="container">
+        <a href="{% url 'library' %}" class="btn btn-outline-light">
+            <span><img class="arrow" src="{% static 'images/left.png' %}" alt="arrow"></span><span>Back</span>
+        </a>
+        <div class="mx-auto">
+            <h2>List of Available Books</h2>
+        </div>
+        <div class="text-center">
+            <form action="{% url 'add_book' lib_id %}">
+                <button class="button" type="sub mit">
+                    <span class="button__text">Add Book</span>
+                    <span class="button__icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke-width="2"
                         stroke-linejoin="round" stroke-linecap="round" stroke="currentColor" height="24" fill="none"
                         class="svg">
                         <line y2="19" y1="5" x2="12" x1="12"></line>
                         <line y2="12" y1="12" x2="19" x1="5"></line>
                     </svg></span>
-            </button>
-        </form>
+                </button>
+            </form>
+        </div>
     </div>
     {% if not books %}
     <h3 class="mt-5">No Book Added Yet</h3>
@@ -139,7 +142,7 @@ Open
         </tbody>
     </table>
     {% endif %}
-    <a href="{% url 'issued_books' lib_id %}" class="btn btn-outline-light mt-3">Issued Books</a>
+        <a href="{% url 'issued_books' lib_id %}" class="btn btn-outline-light mt-3 mx-auto">Issued Books</a>
 </div>
 
 {% endblock %}
