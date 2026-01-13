@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'newapp',
     'rest_framework',
+    "libmasy.apps.NewappConfig",
 ]
 
 MIDDLEWARE = [
@@ -79,24 +80,6 @@ WSGI_APPLICATION = 'libmasy.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
-
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': BASE_DIR / 'db.sqlite3',
-#     }
-# }
-
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.postgresql',
-#         'NAME': 'railway',
-#         'USER': 'postgres',
-#         'PASSWORD': 'YZZjqpiClLOYgFKUjQHGaDuLeQzebwJG',
-#         'HOST': 'postgres.railway.internal',
-#         'PORT': '5432',
-#     }
-# }
 
 import dj_database_url
 
@@ -167,21 +150,3 @@ LOGIN_REDIRECT_URL = '/library/'
 LOGOUT_REDIRECT_URL = '/'
 
 STATIC_ROOT = BASE_DIR / 'staticfiles'
-
-# temp
-
-if os.environ.get("CREATE_SUPERUSER") == "1":
-    from django.contrib.auth import get_user_model
-    User = get_user_model()
-
-    username = os.environ.get("DJANGO_SU_NAME")
-    email = os.environ.get("DJANGO_SU_EMAIL")
-    password = os.environ.get("DJANGO_SU_PASSWORD")
-
-    if username and password:
-        if not User.objects.filter(username=username).exists():
-            User.objects.create_superuser(
-                username=username,
-                email=email,
-                password=password
-            )
