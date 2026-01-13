@@ -105,7 +105,7 @@ DATABASE_URL = os.environ.get("DATABASE_URL")
 if DATABASE_URL:
     DATABASES = {
         "default": dj_database_url.parse(
-            DATABASE_URL = 'postgresql://postgres:YZZjqpiClLOYgFKUjQHGaDuLeQzebwJG@ballast.proxy.rlwy.net:29397/railway',
+            DATABASE_URL,
             conn_max_age=600,
             ssl_require=True
         )
