@@ -167,14 +167,3 @@ LOGIN_REDIRECT_URL = '/library/'
 LOGOUT_REDIRECT_URL = '/'
 
 STATIC_ROOT = BASE_DIR / 'staticfiles'
-
-# temp
-
-if os.environ.get("RENDER"):
-    from django.contrib.auth.models import User
-    if not User.objects.filter(username="admin").exists():
-        User.objects.create_superuser(
-            "Navin",
-            "gadginavinp@gmail.com",
-            "Navin"
-        )
