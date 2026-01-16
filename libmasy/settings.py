@@ -44,7 +44,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'newapp',
     'rest_framework',
-    "libmasy.apps.NewappConfig",
+    "newapp.apps.NewappConfig",
 ]
 
 MIDDLEWARE = [
