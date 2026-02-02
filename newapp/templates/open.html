@@ -95,7 +95,7 @@ Open
         </div>
     </div>
     {% if not books %}
-    <h3 class="mt-5">No Book Added Yet</h3>
+    <h3 class="mt-5 mx-auto">No Book Added Yet</h3>
     {% else %}
     <table class="table table-striped table-dark mt-5">
         <thead>
@@ -142,7 +142,9 @@ Open
         </tbody>
     </table>
     {% endif %}
-        <a href="{% url 'issued_books' lib_id %}" class="btn btn-outline-light mt-3 mx-auto">Issued Books</a>
+</div>
+<div class="container text-center">
+    <a href="{% url 'issued_books' lib_id %}" class="btn btn-outline-light mt-3 mx-auto">Issued Books</a>
 </div>
 
 {% endblock %}
