@@ -44,7 +44,6 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'newapp',
     'rest_framework',
-    # "newapp.apps.NewappConfig",
 ]
 
 MIDDLEWARE = [
@@ -83,7 +82,7 @@ WSGI_APPLICATION = 'libmasy.wsgi.application'
 
 import dj_database_url
 
-# DATABASE_URL = 'postgresql://postgres:YZZjqpiClLOYgFKUjQHGaDuLeQzebwJG@ballast.proxy.rlwy.net:29397/railway'
+# postgresql://postgres:Navin@gamer7@db.pkclprbbdiefuqynnpho.supabase.co:5432/postgres
 DATABASE_URL = os.environ.get("DATABASE_URL")
 if DATABASE_URL:
     DATABASES = {
@@ -100,6 +99,17 @@ else:
             "NAME": BASE_DIR / "db.sqlite3",
         }
     }
+
+# DATABASES = {
+#        "default": {
+#             "ENGINE": "django.db.backends.postgresql_psycopg2",
+#             "NAME": "django_db",
+#             'USER': 'django_user',
+#             'PASSWORD': 'dj@ngo-user',
+#             'HOST': '',
+#             'PORT': '',
+#        }
+# }
 
 
 # Password validation
