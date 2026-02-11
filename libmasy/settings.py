@@ -99,18 +99,6 @@ else:
         }
     }
 
-# DATABASES = {
-#        "default": {
-#             "ENGINE": "django.db.backends.postgresql_psycopg2",
-#             "NAME": "django_db",
-#             'USER': 'django_user',
-#             'PASSWORD': 'dj@ngo-user',
-#             'HOST': '',
-#             'PORT': '',
-#        }
-# }
-
-
 # Password validation
 # https://docs.djangoproject.com/en/5.2/ref/settings/#auth-password-validators
 
