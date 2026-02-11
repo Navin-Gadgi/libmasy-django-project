@@ -82,7 +82,6 @@ WSGI_APPLICATION = 'libmasy.wsgi.application'
 
 import dj_database_url
 
-# postgresql://postgres:Navin@gamer7@db.pkclprbbdiefuqynnpho.supabase.co:5432/postgres
 DATABASE_URL = os.environ.get("DATABASE_URL")
 if DATABASE_URL:
     DATABASES = {
